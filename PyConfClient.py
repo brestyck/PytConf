@@ -19,6 +19,12 @@ else:
         "hello": "PYCONF Client "+c.g(0)+"v1"+c.d(0)
     }
 class response:
+    def gen_sys_event(self,who,what,to_who,flag):
+        event = "sys:"+who+":"+what+":"+to_who+":"+flag
+        return event
+    def gen_msg(self,who,content):
+        event = "msg:"+who+":"+content
+        return event
     def send_to(self, server, response_str, myuname):
         sock = socket.socket()
         sock.connect((server, 5081))
