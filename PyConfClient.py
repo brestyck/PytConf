@@ -10,7 +10,7 @@ class sc:
     def b(self):return c.d(0)+"["+c.r(0)+"*"+c.d(0)+"] "
     def y(self):return c.d(0)+"["+c.r(0)+"*"+c.d(0)+"] "
     def g(self):return c.d(0)+"["+c.r(0)+"*"+c.d(0)+"] "
-if platform.system == "Windows":
+if platform.system() == "Windows":
     cmds = {
         "hello": "PYCONF Client v1"
     }
@@ -59,3 +59,5 @@ class parse_fbs:
         response.split(":")
         out = response[1]+": "+response[2]
         return out
+#MAIN CYCLE HERE:
+print(cmds["hello"])
