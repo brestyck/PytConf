@@ -19,8 +19,8 @@ else:
         "hello": "PYCONF Client "+c.g(0)+"v1"+c.d(0)
     }
 class response:
-    def gen(self, to, action, action_to, myuname):
-        response = to+":"+action+":"+action_to+":"+myuname
+    def gen(self, type_r, action, action_to, myuname):
+        response = type_r+":"+action+":"+action_to
         return response
     def send_to(self, server, response_str, myuname):
         sock = socket.socket()
@@ -36,3 +36,26 @@ class response:
 class parse_fbs:
     def out_sys_event(self,response):
         response = response.split(":")
+        if platform.system() != "Windows":
+            if response[4] == "low":
+                out = sc.b(0)+response[1]+" "+response[2]+" "+response[3]
+            if response[4] == "happy":
+                out = sc.g(0)+response[1]+" "+response[2]+" "+response[3]
+            if response[4] == "attention":
+                out = sc.y(0)+response[1]+" "+response[2]+" "+response[3]
+            if response[4] == "critical":
+                out = sc.r(0)+response[1]+" "+response[2]+" "+response[3]
+        else:
+            if response[4] == "low":
+                out = "[*] "+response[1]+" "+response[2]+" "+response[3]
+            if response[4] == "happy":
+                out = "[*] "+response[1]+" "+response[2]+" "+response[3]
+            if response[4] == "attention":
+                out = "[*] "+response[1]+" "+response[2]+" "+response[3]
+            if response[4] == "critical":
+                out = "[*] "+response[1]+" "+response[2]+" "+response[3]
+        return out
+    def parse_msgs(self,response):
+        response.split(":")
+        out = response[1]+": "+response[2]
+        return out
