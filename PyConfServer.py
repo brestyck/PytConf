@@ -1,8 +1,11 @@
 import socket
 class response:
-    def gen(self, type_r, action, action_to, myuname):
-        response = type_r+":"+action+":"+action_to
-        return response
+    def gen_sys_event(self,who,what,to_who,flag):
+        event = "sys:"+who+":"+what+":"+to_who+":"+flag
+        return event
+    def gen_msg(self,who,content):
+        event = "msg:"+who+":"+content
+        return event
     def get_response(self):
         sock = socket.socket()
         sock.bind(("", 5081))
