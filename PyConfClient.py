@@ -27,9 +27,12 @@ class response:
         sock.connect((server, 5081))
         sock.send(response_str.encode("utf-8"))
         sock.close()
-    def get(self):
+    def get(self, server):
         sock = socket.socket()
-        sock.bind(("", 5082))
-        sock.listen(10)
-        conn,addr = sock.accept()
-        return conn.recv(16384).decode("utf-8")
+        sock.connect((server, 5081))
+        sock.send(b"parse")
+        feedback = sock.recv(16384).decode("utf-8")
+        return feedback
+class parse_fbs:
+    def out_sys_event(self,response):
+        response = response.split(":")
