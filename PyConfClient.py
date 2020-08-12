@@ -29,3 +29,7 @@ class response:
         sock.close()
     def get(self):
         sock = socket.socket()
+        sock.bind(("", 5082))
+        sock.listen(10)
+        conn,addr = sock.accept()
+        return conn.recv(16384).decode("utf-8")
