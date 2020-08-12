@@ -19,9 +19,6 @@ else:
         "hello": "PYCONF Client "+c.g(0)+"v1"+c.d(0)
     }
 class response:
-    def gen(self, type_r, action, action_to, myuname):
-        response = type_r+":"+action+":"+action_to
-        return response
     def send_to(self, server, response_str, myuname):
         sock = socket.socket()
         sock.connect((server, 5081))
